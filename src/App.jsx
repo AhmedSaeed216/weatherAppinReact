@@ -97,30 +97,40 @@ function App() {
     }
   }
 
+  const SearchbyBtn=(e)=>{
+    axios.get(url).then((response)=>{
+      setdata(response.data)
+      console.log(response.data)
+    })
+  }
+
   return (
    <>
-      <div className="mainClass w-full h-full">
-          <div className="input">
+      <div className="mainClass w-full h-full ">
+          <div className="input flex flex-col justify-center">
             <input type="text" 
             placeholder='Enter Latitude' 
-            className='border border-black  w-[200px] rounded-xl  p-2'
+            className='border border-black  w-[300px] rounded-xl  p-2'
             value={Latitude}
             onChange={(e)=>{setLatitude(e.target.value)}}
             />
 
             <input type="text" 
             placeholder='Enter Longitude'
-            className='border border-red-400  bg-black text-white rounded-xl m-2 p-2'
+            className='border border-red-400 w-[300px]  bg-black text-white rounded-xl m-2 p-2'
             value={Longitude}
             onChange={(e)=>{setLongitude(e.target.value)}}
             onKeyDownCapture={SearchFunctions}
             />
             
+            <br />
+            <button className=' w-28 h-16 bg-black justify-center border-4 rounded-full  text-white font-bold hover:bg-slate-500' onClick={SearchbyBtn}>Search </button>
           </div>
 
           
 
           <Weather WeatherData={data}/>
+
       </div>
    </>
   );
